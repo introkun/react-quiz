@@ -4,15 +4,28 @@ import ActiveQuiz from "../../components/ActiveQuiz/ActiveQuiz";
 
 class Quiz extends Component {
     state = {
+        activeQuestion: 0,
         quiz: [
             {
                 question: "Какого цвета небо?",
-                correctAnswerId: 2,
+                id: 1,
+                correctAnswerId: 3,
                 answers: [
-                    {text: "Вопрос 1", id: 1},
-                    {text: "Вопрос 2", id: 2},
-                    {text: "Вопрос 3", id: 3},
-                    {text: "Вопрос 4", id: 4}
+                    {text: "Черный", id: 1},
+                    {text: "Красный", id: 2},
+                    {text: "Синий", id: 3},
+                    {text: "Зеленый", id: 4}
+                ]
+            },
+            {
+                question: "Какого цвета молоко?",
+                id: 2,
+                correctAnswerId: 1,
+                answers: [
+                    {text: "Белое", id: 1},
+                    {text: "Красное", id: 2},
+                    {text: "Синее", id: 3},
+                    {text: "Зеленое", id: 4}
                 ]
             }
         ]
@@ -20,6 +33,7 @@ class Quiz extends Component {
 
     onAnswerClickHandler = (answerId) => {
         console.log('Answer id #', answerId)
+        this.setState({activeQuestion: this.state.activeQuestion+1})
     }
 
     render() {
@@ -28,9 +42,12 @@ class Quiz extends Component {
                 <div className={classes.QuizWrapper}>
                     <h1>Quiz</h1>
                     <ActiveQuiz
-                        question={this.state.quiz[0].question}
-                        answers={this.state.quiz[0].answers}
-                        onAnswerClick={this.onAnswerClickHandler} />
+                        question={this.state.quiz[this.state.activeQuestion].question}
+                        answers={this.state.quiz[this.state.activeQuestion].answers}
+                        onAnswerClick={this.onAnswerClickHandler}
+                        quizLength={this.state.quiz.length}
+                        answerNumber={this.state.activeQuestion + 1}
+                    />
                 </div>
             </div>
         )
