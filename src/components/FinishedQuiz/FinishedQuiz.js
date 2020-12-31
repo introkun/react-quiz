@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import classes from './FinishedQuiz.module.css'
+import Button from "../UI/Button/Button"
 
 class FinishedQuiz extends Component {
     render() {
@@ -35,7 +36,8 @@ class FinishedQuiz extends Component {
                 <p>Правильно {successCount} из {this.props.quiz.length}</p>
 
                 <div>
-                    <button onClick={this.props.onRetry}>Повторить</button>
+                    <Button onClick={this.props.onRetry} type="primary">Повторить</Button>
+                    <Button type="success">Перейти в список тестов</Button>
                 </div>
             </div>
         )
